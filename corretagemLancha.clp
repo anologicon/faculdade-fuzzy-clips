@@ -3,7 +3,7 @@
 ?*g_resultado* = 0
 )
 
-; Em que nível se encontra o casco do avaliacao
+; Em que nível se encontra a avaliacao do casco
 (deftemplate casco
 0 10 nota_casco
     ((ruim (z 0 3))
@@ -13,6 +13,7 @@
     )
 )
 
+; Exemplo de plotagem dos graficos
 ; (plot-fuzzy-value t "obrz" 0 10 
 ;      (create-fuzzy-value casco otimo)
 ;      (create-fuzzy-value casco bom)
@@ -20,6 +21,7 @@
 ;      (create-fuzzy-value casco ruim)
 ; )
 
+; Em que nível se encontra a avaliacao do motor
 (deftemplate motor
 0 10 nota_motor
      ((ruim (z 0 4))
@@ -29,6 +31,7 @@
     )
 )
 
+; Exemplo de plotagem dos graficos
 ; (plot-fuzzy-value t "obrz" 0 10 
 ;      (create-fuzzy-value motor otimo)
 ;      (create-fuzzy-value motor bom)
@@ -36,7 +39,7 @@
 ;      (create-fuzzy-value motor ruim)
 ; )
 
-; Phaton 365 2015, valores são em milhares
+; Possiveis avaliações e seus valores em milhares
 (deftemplate avaliacao
 0 800 valorBarco
     ((ruim (z 0 400))
@@ -46,12 +49,16 @@
     )
 )
 
+; Exemplo de plotagem dos graficos
 ; (plot-fuzzy-value t "rmbo" 0 800 
 ;      (create-fuzzy-value avaliacao ruim)
 ;      (create-fuzzy-value avaliacao medio)
 ;      (create-fuzzy-value avaliacao bom)
 ;      (create-fuzzy-value avaliacao otimo)
 ; )
+
+
+; Regras
 
 (defrule Otimo
     (declare (salience 10))
@@ -113,6 +120,9 @@
     (assert (avaliacao ruim))
 )
 
+; Fim regras
+
+; Defuzifica, a forma de conseguir os resultados.
 (defrule defuzifica
     (declare (salience 0))
     ?v_tmp <- (avaliacao ?)
@@ -126,7 +136,11 @@
     (printout t " >>> Término <<< " crlf)
 )
 
-; Melhor preço
+; Slice indica a ordem que sera executado as regras, para dar certo a regra
+; Defuzifica precisa ser executada por ultimo.
+
+; Possiveis combinações de fatos
+
 ; (deffacts avaliacao
 ;     (casco otimo)
 ;     (motor otimo)
