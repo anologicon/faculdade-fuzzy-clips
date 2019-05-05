@@ -70,3 +70,11 @@ Para cada variável linguística foi definido um template. No caso do template C
 )
 ```
 O código ilustra os valores numéricos (notas) possíveis para a situação do Casco, considerando as variáveis linguísticas definidas na Tabela 1 e no template respectivo
+
+![Imagem com os dados plotados do template casco](images/plotagem-casco.png)
+
+No template Motor, foi considerado as variáveis linguísticas como no template Casco, com a situação atual do Motor, porém com valores diferentes, e utilizou-se duas funções pré-definidas (z e s)  uma trapezóide e um triângulo:
+
+```lisp
+
+```
